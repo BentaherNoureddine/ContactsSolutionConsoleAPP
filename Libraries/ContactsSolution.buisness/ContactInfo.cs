@@ -137,6 +137,11 @@ namespace ContactsSolution.buisness
             }
         }
 
+        public static bool Delete(int id)
+        {
+            return clsDataAccess.Delete(id);
+        }
+
 
 
     }

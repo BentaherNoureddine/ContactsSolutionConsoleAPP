@@ -81,11 +81,33 @@ namespace ContactsSolution
                 }
             }
         }
+
+
+        private static void deleteContact(int contactId)
+        {
+            ContactInfo contact = ContactsInfoBuisiness.GetContactInfoByID(contactId);
+            if (contact != null)
+            {
+                if (ContactInfo.Delete(contactId))
+                {
+                    Console.WriteLine("Contact deleted successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to delete contact.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Contact not found.");
+            }
+        }
         static void Main(string[] args)
         {
            //findContactByID(1);
            //reateContact();
             //updateContact(1);
+            deleteContact(9);
         }
     }
 }

@@ -136,5 +136,39 @@ namespace ContactsSolution.Data
 
             return isUpdated;
         }
+
+
+
+        public static bool Delete(int id)
+        {
+            bool isDeleted = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string queryText = "DELETE FROM Contacts WHERE ContactID = @ContactID";
+
+            SqlCommand command = new SqlCommand(queryText, connection);
+            command.Parameters.AddWithValue("@ContactID", id);
+
+            try
+            {
+                connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    isDeleted = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isDeleted;
+        }
     }
 }
